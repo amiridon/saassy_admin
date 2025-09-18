@@ -1,0 +1,64 @@
+﻿@page "/"
+
+<PageTitle>Welcome</PageTitle>
+
+<div class="landing">
+    <section class="hero container">
+        <div class="hero-copy">
+            <h1 class="display-4 fw-bold gradient-text">Saassy Admin</h1>
+            <p class="lead text-muted">A modern, secure starter for building SaaS administration experiences with
+                ASP.NET Core, Identity & Blazor WebAssembly.</p>
+            <div class="cta-group">
+                <a class="btn btn-primary btn-lg" href="authentication/register">Get Started</a>
+                <a class="btn btn-outline-secondary btn-lg" href="authentication/login">Sign In</a>
+            </div>
+            <p class="small text-muted mt-3">Open source foundation • SQLite local dev • Extensible architecture</p>
+        </div>
+        <div class="hero-art">
+            <div class="glass-tile shadow-sm">
+                <h5 class="mb-2">Identity Status</h5>
+                <AuthorizeView>
+                    <Authorized>
+                        <p class="text-success mb-0">You're signed in.</p>
+                    </Authorized>
+                    <NotAuthorized>
+                        <p class="text-danger mb-0">Not signed in.</p>
+                    </NotAuthorized>
+                </AuthorizeView>
+            </div>
+        </div>
+    </section>
+
+    <section class="features container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-tile h-100">
+                    <h3>Secure Auth</h3>
+                    <p>Preconfigured ASP.NET Core Identity + IdentityServer JWT protection ready for multi-tenant
+                        hardening.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-tile h-100">
+                    <h3>API + WASM</h3>
+                    <p>Clean separation of concerns with a fast WebAssembly UI consuming a versionable REST (or future
+                        gRPC) backend.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-tile h-100">
+                    <h3>Local First</h3>
+                    <p>SQLite for frictionless development. Swap to PostgreSQL/SQL Server later with minimal effort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dev-hint container">
+        <SurveyPrompt Title="How is Blazor working for you?" />
+    </section>
+</div>
+
+@code {
+
+}
