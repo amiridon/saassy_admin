@@ -23,22 +23,18 @@
         "src/SaassyAdmin.Client/Server/SaassyAdmin.Client.Server.csproj"
       ],
       "isBackground": true,
-      "problemMatcher": [
-        {
-          "owner": "csharp",
-            "pattern": [{
-              "regexp": ".*",
-              "file": 1,
-              "location": 2,
-              "message": 3
-            }],
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": ".*Building...",
-            "endsPattern": ".*Application started.*"
-          }
+      "problemMatcher": {
+        "owner": "csharp-watch",
+        // Dummy pattern (no problems captured) – we only need background start/stop detection
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".*Building.*",
+          "endsPattern": ".*Application started.*"
         }
-      ]
+      }
     },
     {
       "label": "tailwind-build",
@@ -51,16 +47,19 @@
       "type": "shell",
       "command": "npm run tailwind:watch",
       "isBackground": true,
-      "problemMatcher": [
-        {
-          "pattern": [ { "regexp": ".*" } ],
-          "background": {
-            "activeOnStart": true,
-            "beginsPattern": ".*Starting.*",
-            "endsPattern": ".*ready.*|.*changed.*"
-          }
+      "problemMatcher": {
+        "owner": "tailwind",
+        // Tailwind watch output isn't used for problem parsing; just detect ready state.
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          // Tailwind 3 CLI typically prints "Rebuilding..." or "Starting..." then a "Done in" line.
+          "beginsPattern": "(Starting|Rebuilding).*",
+          "endsPattern": "Done in .*"
         }
-      ]
+      }
     },
     {
       "label": "full-watch",
