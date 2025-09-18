@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Legacy imported icon font (keep) */
+@import url('../wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+/* Custom layers for brand theming */
+@layer base {
+
+  /* Use prefixed utility classes; tailwind.config.cjs sets prefix 'tw-' */
+  body {
+    @apply tw-font-sans tw-bg-brand-radial tw-text-gray-200 tw-antialiased;
+  }
+}
+
+@layer components {
+  .tw-feature-tile {
+    @apply tw-bg-white/5 tw-border tw-border-white/10 tw-rounded-mdx tw-px-5 tw-py-4 tw-transition tw-duration-200 hover:tw-border-white/30 hover:tw-bg-white/10 hover:tw--translate-y-0.5 tw-w-full;
+  }
+
+  .tw-cta-primary {
+    @apply tw-text-white tw-bg-brand-gradient tw-shadow-smx tw-font-medium tw-rounded tw-px-6 tw-py-3 tw-text-base tw-inline-flex tw-items-center tw-justify-center hover:tw-shadow-glass hover:tw--translate-y-0.5 tw-transition;
+  }
+
+  .tw-cta-secondary {
+    @apply tw-border tw-border-white/30 tw-text-gray-200 tw-rounded tw-px-6 tw-py-3 tw-inline-flex tw-items-center tw-justify-center hover:tw-border-white/60 tw-transition;
+  }
+
+  .tw-small {
+    @apply tw-text-xs tw-tracking-wide;
+  }
+
+  .tw-text-muted {
+    @apply tw-text-gray-400;
+  }
+
+  .tw-text-success {
+    @apply tw-text-green-400;
+  }
+
+  .tw-text-danger {
+    @apply tw-text-rose-400;
+  }
+
+  /* Validation state helpers */
+  .valid.modified:not([type=checkbox]) {
+    @apply tw-outline tw-outline-1 tw-outline-green-500;
+  }
+
+  .invalid {
+    @apply tw-outline tw-outline-1 tw-outline-rose-500;
+  }
+
+  .validation-message {
+    @apply tw-text-rose-500 tw-text-sm;
+  }
+
+  /* Blazor error UI banner */
+  #blazor-error-ui {
+    @apply tw-hidden tw-fixed tw-inset-x-0 tw-bottom-0 tw-bg-amber-100 tw-text-amber-900 tw-shadow-lg tw-py-3 tw-pl-6 tw-pr-10 tw-text-sm tw-z-50;
+  }
+
+  #blazor-error-ui .dismiss {
+    @apply tw-absolute tw-top-2 tw-right-3 tw-cursor-pointer tw-text-amber-700 hover:tw-text-amber-900;
+  }
+
+  .blazor-error-boundary {
+    @apply tw-relative tw-bg-red-700 tw-text-white tw-rounded-md tw-px-6 tw-py-4 tw-font-medium;
+  }
+
+  .blazor-error-boundary::after {
+    content: "An error has occurred.";
+  }
+}

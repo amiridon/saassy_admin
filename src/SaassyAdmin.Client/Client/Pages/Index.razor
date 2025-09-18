@@ -2,59 +2,48 @@
 
 <PageTitle>Welcome</PageTitle>
 
-<div class="landing">
-    <section class="hero container">
-        <div class="hero-copy">
-            <h1 class="display-4 fw-bold gradient-text">Saassy Admin</h1>
-            <p class="lead text-muted">A modern, secure starter for building SaaS administration experiences with
-                ASP.NET Core, Identity & Blazor WebAssembly.</p>
-            <div class="cta-group">
-                <a class="btn btn-primary btn-lg" href="authentication/register">Get Started</a>
-                <a class="btn btn-outline-secondary btn-lg" href="authentication/login">Sign In</a>
+<div class="tw-space-y-20 tw-container tw-mx-auto tw-px-4 lg:tw-px-8 tw-pt-10">
+    <section class="tw-grid tw-gap-12 xl:tw-grid-cols-2 tw-items-center">
+        <div class="tw-space-y-6">
+            <h1 class="tw-text-5xl tw-font-bold tw-gradient-text tw-leading-tight">Saassy Admin</h1>
+            <p class="tw-text-lg tw-text-muted tw-max-w-prose">A modern, secure starter for building SaaS administration experiences with ASP.NET Core, Identity & Blazor WebAssembly.</p>
+            <div class="tw-flex tw-flex-wrap tw-gap-4">
+                <a class="tw-cta-primary" href="authentication/register">Get Started</a>
+                <a class="tw-cta-secondary" href="authentication/login">Sign In</a>
             </div>
-            <p class="small text-muted mt-3">Open source foundation • SQLite local dev • Extensible architecture</p>
+            <p class="tw-small tw-text-muted">Open source foundation • SQLite local dev • Extensible architecture</p>
         </div>
-        <div class="hero-art">
-            <div class="glass-tile shadow-sm">
-                <h5 class="mb-2">Identity Status</h5>
+        <div class="tw-flex tw-justify-center">
+            <div class="tw-glass-tile">
+                <h5 class="tw-mb-2 tw-text-gray-300 tw-font-semibold">Identity Status</h5>
                 <AuthorizeView>
                     <Authorized>
-                        <p class="text-success mb-0">You're signed in.</p>
+                        <p class="tw-text-success tw-m-0">You're signed in.</p>
                     </Authorized>
                     <NotAuthorized>
-                        <p class="text-danger mb-0">Not signed in.</p>
+                        <p class="tw-text-danger tw-m-0">Not signed in.</p>
                     </NotAuthorized>
                 </AuthorizeView>
             </div>
         </div>
     </section>
 
-    <section class="features container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="feature-tile h-100">
-                    <h3>Secure Auth</h3>
-                    <p>Preconfigured ASP.NET Core Identity + IdentityServer JWT protection ready for multi-tenant
-                        hardening.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-tile h-100">
-                    <h3>API + WASM</h3>
-                    <p>Clean separation of concerns with a fast WebAssembly UI consuming a versionable REST (or future
-                        gRPC) backend.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-tile h-100">
-                    <h3>Local First</h3>
-                    <p>SQLite for frictionless development. Swap to PostgreSQL/SQL Server later with minimal effort.</p>
-                </div>
-            </div>
+    <section class="tw-grid md:tw-grid-cols-3 tw-gap-6">
+        <div class="tw-feature-tile">
+            <h3 class="tw-text-lg tw-font-semibold tw-mb-2">Secure Auth</h3>
+            <p class="tw-text-sm tw-leading-relaxed tw-text-muted">Preconfigured ASP.NET Core Identity + IdentityServer JWT protection ready for multi-tenant hardening.</p>
+        </div>
+        <div class="tw-feature-tile">
+            <h3 class="tw-text-lg tw-font-semibold tw-mb-2">API + WASM</h3>
+            <p class="tw-text-sm tw-leading-relaxed tw-text-muted">Clean separation of concerns with a fast WebAssembly UI consuming a versionable REST (or future gRPC) backend.</p>
+        </div>
+        <div class="tw-feature-tile">
+            <h3 class="tw-text-lg tw-font-semibold tw-mb-2">Local First</h3>
+            <p class="tw-text-sm tw-leading-relaxed tw-text-muted">SQLite for frictionless development. Swap to PostgreSQL/SQL Server later with minimal effort.</p>
         </div>
     </section>
 
-    <section class="dev-hint container">
+    <section>
         <SurveyPrompt Title="How is Blazor working for you?" />
     </section>
 </div>
