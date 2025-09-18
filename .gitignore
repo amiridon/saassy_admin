@@ -52,3 +52,23 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# --- Node / Frontend tooling ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Lock files: decide per workflow (keep package-lock.json committed if generated)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Tailwind / PostCSS cache (if any appear)
+.cache/
+
+# Generated CSS (optional: if you prefer build output not committed)
+# Uncomment the next line to exclude the compiled Tailwind bundle and rely on build step:
+# src/SaassyAdmin.Client/Client/wwwroot/css/tailwind.css

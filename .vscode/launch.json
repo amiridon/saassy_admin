@@ -5,7 +5,7 @@
       "name": "Server (API)",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
+  "preLaunchTask": "prelaunch-full",
       "program": "${workspaceFolder}/src/SaassyAdmin.Client/Server/bin/Debug/net6.0/SaassyAdmin.Client.Server.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/SaassyAdmin.Client/Server",

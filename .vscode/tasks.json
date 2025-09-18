@@ -39,6 +39,38 @@
           }
         }
       ]
+    },
+    {
+      "label": "tailwind-build",
+      "type": "shell",
+      "command": "npm run tailwind:build",
+      "problemMatcher": []
+    },
+    {
+      "label": "tailwind-watch",
+      "type": "shell",
+      "command": "npm run tailwind:watch",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [ { "regexp": ".*" } ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*Starting.*",
+            "endsPattern": ".*ready.*|.*changed.*"
+          }
+        }
+      ]
+    },
+    {
+      "label": "full-watch",
+      "dependsOn": ["tailwind-watch", "watch-server"],
+      "problemMatcher": []
+    },
+    {
+      "label": "prelaunch-full",
+      "dependsOn": ["tailwind-build", "build"],
+      "problemMatcher": []
     }
   ]
 }

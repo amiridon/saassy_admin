@@ -33,7 +33,7 @@ Key files:
 - `src/SaassyAdmin.Client/Server/Program.cs` – composition root, DB migration, Identity config
 - `src/SaassyAdmin.Client/Server/appsettings.json` – connection string using `DataSource=app.db`
 - `src/SaassyAdmin.Client/Client/Pages/Index.razor` – landing page (hero + features)
-- `src/SaassyAdmin.Client/Client/wwwroot/css/app.css` – extended design system additions
+- `src/SaassyAdmin.Client/Client/Styles/tailwind-input.css` – Tailwind layer + component abstractions (replaces legacy `app.css`)
 
 ---
 ## Prerequisites
@@ -117,14 +117,105 @@ The sample tests assert successful page delivery; extend with:
 ## Styling & UX Principles
 
 Implemented improvements:
-- Gradient brand accent, glass panels, accessible focus outlines
-- Dark & light mode adaptation (`prefers-color-scheme`)
-- Reduced motion friendly (no large animations added yet)
 
 Suggested next steps:
-- Add a central design tokens file & component library
-- Introduce Tailwind or CSS variables build pipeline if scaling
-- Add automated accessibility tests (e.g. Playwright + axe)
+
+---
+## Tailwind CSS Integration (Now Bootstrap-Free)
+
+Tailwind is fully adopted with a prefixed utility namespace (`tw-`) to avoid any accidental collisions with residual third‑party styles. Bootstrap and the legacy `app.css` file have been removed.
+
+### Why Prefix?
+The Blazor template still references `bootstrap.min.css`. Prefixing ensures no unintended overrides and allows a gradual removal of Bootstrap.
+
+### Key Files
+- `package.json` – scripts `tailwind:build`, `tailwind:watch`
+- `tailwind.config.cjs` – custom theme (brand colors, gradient, glass shadows) + plugin adding `tw-glass-tile`, `tw-gradient-text`
+- `postcss.config.cjs` – pipeline for Tailwind + Autoprefixer
+- `src/.../Client/Styles/tailwind-input.css` – Tailwind layer entry + component classes using `@apply`
+- Output: `wwwroot/css/tailwind.css` (only stylesheet linked, aside from generated `*.styles.css`)
+
+### Commands
+```pwsh
+# install dependencies (first time)
+npm install
+
+# build production bundle
+npm run tailwind:build
+
+# watch (development)
+npm run tailwind:watch
+```
+
+### VS Code Tasks
+- `tailwind-build` (one-off)
+- `tailwind-watch` (background)
+- `full-watch` runs both Tailwind + server watch simultaneously
+
+### Patterns & Best Practices
+1. Favor utilities for most layout/spacing; use small component classes only for repeated composite patterns (e.g. call-to-action buttons, feature tiles).
+2. Keep semantic wrappers minimal; prefer inline utilities for one-off cases.
+3. Remove Bootstrap progressively: replicate a component with Tailwind, test, then strip the Bootstrap classes/markup.
+4. Consider switching dark mode to `'class'` later for user theme toggles (currently `'media'`).
+
+### Production Publish
+Ensure Tailwind build runs prior to `dotnet publish`:
+```pwsh
+npm run tailwind:build
+dotnet publish -c Release
+```
+
+### Future Enhancements
+- Add typography plugin for richer prose styling
+- Introduce design tokens via CSS variables + Tailwind theme mapping
+- Add form plugin for consistent input styling
+- Implement a dark-mode toggle component using `document.documentElement.classList`
+
+### Migration Notes (Completed)
+The following have been refactored to Tailwind utilities/components:
+- Navigation (`NavMenu.razor`) – responsive mobile toggle with accessible button & active state underline.
+- Layout (`MainLayout.razor`) – simplified structural wrappers using flex/grid + glass panels.
+- Auth UI (`LoginDisplay.razor`) – Tailwind button & link tokens; logout styled as subtle danger action.
+- Sample pages (`Index`, `Counter`) – all former Bootstrap utility classes removed.
+- Validation + error surfaces – legacy `.valid.modified`, `.invalid`, `.validation-message`, `#blazor-error-ui`, and `.blazor-error-boundary` migrated into Tailwind component layer.
+
+Removed assets:
+- `wwwroot/css/app.css`
+- `wwwroot/css/bootstrap/bootstrap.min.css` link tag from `index.html` & `Error.cshtml`.
+
+If you reintroduce a global stylesheet, prefer creating a small `overrides.css` and add it to the Tailwind `content` array if it contains classes you want purged.
+
+### Tailwind Troubleshooting
+Common issues & fixes:
+
+1. No styling / page unstyled:
+	- Confirm `wwwroot/css/tailwind.css` exists. If missing, run:
+	  ```pwsh
+	  npm install
+	  npm run tailwind:build
+	  ```
+	- Ensure `index.html` includes: `<link href="css/tailwind.css" rel="stylesheet" />`.
+
+2. Build error: `tailwindcss is not recognized`:
+	- Dependencies not installed. Run `npm install` from the solution root.
+
+3. Error about a utility “does not exist” (e.g. `antialiased`):
+	- A `prefix: 'tw-'` is configured, so use `tw-antialiased` instead of `antialiased` inside `@apply` blocks.
+	- All internal utilities inside `@apply` must be prefixed.
+
+4. Custom classes purged unexpectedly:
+	- Wrap them in an `@layer components { ... }` block or add the file defining them to `content` in `tailwind.config.cjs`.
+
+5. Slow IntelliSense / missing class suggestions:
+	- Run the watch build (`npm run tailwind:watch`) so the editor plugin sees generated context.
+
+6. After git clone, styling broken:
+	- `node_modules` isn’t committed. Run `npm install` before debugging.
+
+7. Add a new Razor folder? Update `content` globs in `tailwind.config.cjs` so classes used there are preserved.
+
+8. Want to auto-run Tailwind on debug:
+	- Add a VS Code task that runs `npm run tailwind:build` before launch or a background watch task in a compound.
 
 ---
 ## Security Hardening Checklist (For Later)
