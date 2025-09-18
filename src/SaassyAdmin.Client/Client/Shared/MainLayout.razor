@@ -1,22 +1,27 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="tw-min-h-screen tw-flex tw-flex-col tw-bg-gradient-to-br tw-from-background tw-to-background/95 tw-text-foreground">
+<div
+    class="tw-min-h-screen tw-flex tw-flex-col tw-bg-gradient-to-br tw-from-background tw-to-background/95 tw-text-foreground">
     <!-- Primary navigation bar -->
     <NavMenu />
 
-    <div class="tw-relative tw-flex-1 tw-flex tw-w-full tw-max-w-7xl tw-mx-auto tw-px-4 lg:tw-grid lg:tw-grid-cols-[16rem_1fr] lg:tw-gap-8 tw-pt-6">
+    <div
+        class="tw-relative tw-flex-1 tw-flex tw-w-full tw-max-w-7xl tw-mx-auto tw-px-4 lg:tw-grid lg:tw-grid-cols-[16rem_1fr] lg:tw-gap-8 tw-pt-6">
         <!-- Sidebar (desktop) -->
         <aside class="tw-hidden lg:tw-flex tw-flex-col tw-gap-4 tw-sticky tw-top-6 tw-h-[calc(100vh-4rem)]">
-            <div class="tw-rounded-xl tw-bg-surface/60 tw-backdrop-blur tw-border tw-border-surface/50 tw-shadow-inner tw-p-4 tw-space-y-2">
+            <div
+                class="tw-rounded-xl tw-bg-surface/60 tw-backdrop-blur tw-border tw-border-surface/50 tw-shadow-inner tw-p-4 tw-space-y-2">
                 <h2 class="tw-text-xs tw-uppercase tw-tracking-wide tw-font-semibold tw-text-foreground/60">Account</h2>
                 <LoginDisplay />
-                <a href="https://docs.microsoft.com/aspnet/" target="_blank" class="tw-text-sm tw-text-foreground/70 hover:tw-text-primary tw-transition">Docs</a>
+                <a href="https://docs.microsoft.com/aspnet/" target="_blank"
+                    class="tw-text-sm tw-text-foreground/70 hover:tw-text-primary tw-transition">Docs</a>
             </div>
         </aside>
 
         <!-- Main content -->
         <main class="tw-w-full tw-flex tw-flex-col tw-gap-6 tw-pb-16">
-            <article class="tw-rounded-2xl tw-bg-surface/60 tw-backdrop-blur tw-border tw-border-surface/50 tw-shadow-inner tw-p-6 tw-min-h-[40vh]">
+            <article
+                class="tw-rounded-2xl tw-bg-surface/60 tw-backdrop-blur tw-border tw-border-surface/50 tw-shadow-inner tw-p-6 tw-min-h-[40vh]">
                 @Body
             </article>
         </main>

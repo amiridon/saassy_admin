@@ -13,7 +13,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Helvetica Neue','Helvetica','Arial','ui-sans-serif','system-ui']
+        sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'ui-sans-serif', 'system-ui']
       },
       colors: {
         brand: {
@@ -36,16 +36,16 @@ module.exports = {
     }
   },
   plugins: [
-    function({ addComponents, addUtilities, theme }) {
+    function ({ addComponents, addUtilities, theme }) {
       addComponents({
         '.tw-glass-tile': {
           'backdrop-filter': 'blur(12px) saturate(160%)',
-            background: 'rgba(255,255,255,.06)',
-            border: '1px solid rgba(255,255,255,.1)',
-            padding: '1.25rem 1.5rem',
-            'border-radius': theme('borderRadius.mdx'),
-            width: '100%',
-            'max-width': '320px'
+          background: 'rgba(255,255,255,.06)',
+          border: '1px solid rgba(255,255,255,.1)',
+          padding: '1.25rem 1.5rem',
+          'border-radius': theme('borderRadius.mdx'),
+          width: '100%',
+          'max-width': '320px'
         }
       });
       addUtilities({

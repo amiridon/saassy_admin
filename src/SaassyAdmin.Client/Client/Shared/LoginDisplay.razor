@@ -7,21 +7,25 @@
 <AuthorizeView>
     <Authorized>
         <div class="tw-flex tw-items-center tw-gap-3">
-            <a href="authentication/profile" class="tw-text-sm tw-font-medium tw-text-foreground/80 hover:tw-text-primary tw-transition">Hello, @context.User.Identity?.Name!</a>
+            <a href="authentication/profile"
+                class="tw-text-sm tw-font-medium tw-text-foreground/80 hover:tw-text-primary tw-transition">Hello,
+                @context.User.Identity?.Name!</a>
             <button type="button"
-                    class="tw-text-sm tw-font-medium tw-inline-flex tw-items-center tw-gap-1 tw-rounded-md tw-px-3 tw-py-1.5 tw-bg-danger/10 tw-text-danger hover:tw-bg-danger/20 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-danger/50 tw-transition"
-                    @onclick="BeginSignOut">Log out</button>
+                class="tw-text-sm tw-font-medium tw-inline-flex tw-items-center tw-gap-1 tw-rounded-md tw-px-3 tw-py-1.5 tw-bg-danger/10 tw-text-danger hover:tw-bg-danger/20 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-danger/50 tw-transition"
+                @onclick="BeginSignOut">Log out</button>
         </div>
     </Authorized>
     <NotAuthorized>
         <div class="tw-flex tw-items-center tw-gap-4">
-            <a href="authentication/register" class="tw-text-sm tw-font-medium tw-text-primary hover:tw-text-primary/80 tw-transition">Register</a>
-            <a href="authentication/login" class="tw-text-sm tw-font-medium tw-text-foreground/80 hover:tw-text-primary tw-transition">Log in</a>
+            <a href="authentication/register"
+                class="tw-text-sm tw-font-medium tw-text-primary hover:tw-text-primary/80 tw-transition">Register</a>
+            <a href="authentication/login"
+                class="tw-text-sm tw-font-medium tw-text-foreground/80 hover:tw-text-primary tw-transition">Log in</a>
         </div>
     </NotAuthorized>
 </AuthorizeView>
 
-@code{
+@code {
     private async Task BeginSignOut(MouseEventArgs args)
     {
         await SignOutManager.SetSignOutState();
