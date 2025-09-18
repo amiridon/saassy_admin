@@ -61,13 +61,14 @@ yarn-error.log*
 pnpm-debug.log*
 .pnpm-store/
 
-# Optional lock files (uncomment to ignore if policy forbids committing)
+# Lock files: decide per workflow (keep package-lock.json committed if generated)
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml
 
-# Tailwind / PostCSS cache or misc
+# Tailwind / PostCSS cache (if any appear)
 .cache/
 
-# Generated Tailwind output (uncomment if you prefer not to commit build artifact)
+# Generated CSS (optional: if you prefer build output not committed)
+# Uncomment the next line to exclude the compiled Tailwind bundle and rely on build step:
 # src/SaassyAdmin.Client/Client/wwwroot/css/tailwind.css

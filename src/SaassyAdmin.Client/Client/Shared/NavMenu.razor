@@ -1,0 +1,56 @@
+﻿<nav class="tw-bg-surface/80 tw-backdrop-blur tw-border-b tw-border-surface/40 tw-shadow-sm">
+    <div class="tw-max-w-7xl tw-mx-auto tw-flex tw-items-center tw-justify-between tw-px-4 tw-h-14">
+        <a href="" class="tw-font-semibold tw-text-lg tw-tracking-tight tw-text-foreground hover:tw-text-primary tw-transition">SaassyAdmin</a>
+        <button type="button"
+                class="tw-inline-flex tw-items-center tw-justify-center tw-rounded-md tw-p-2 tw-text-foreground hover:tw-bg-surface/60 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-primary md:tw-hidden"
+                aria-label="Toggle navigation menu"
+                aria-expanded="@(open ? "true" : "false")"
+                @onclick="ToggleNavMenu">
+            <svg class="tw-h-5 tw-w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                @if (!open)
+                {
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                }
+                else
+                {
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                }
+            </svg>
+        </button>
+        <ul class="tw-hidden md:tw-flex tw-gap-6 tw-text-sm tw-font-medium">
+            <li>
+                <NavLink href="" Match="NavLinkMatch.All" class="@LinkBaseClass" ActiveClass="@ActiveClass">Home</NavLink>
+            </li>
+            <li>
+                <NavLink href="counter" class="@LinkBaseClass" ActiveClass="@ActiveClass">Counter</NavLink>
+            </li>
+            <li>
+                <NavLink href="fetchdata" class="@LinkBaseClass" ActiveClass="@ActiveClass">Fetch data</NavLink>
+            </li>
+        </ul>
+    </div>
+    <div class="md:tw-hidden" hidden="@(!open)">
+        <ul class="tw-px-4 tw-pb-4 tw-space-y-1 tw-animate-fade-in tw-text-sm tw-font-medium">
+            <li>
+                <NavLink href="" Match="NavLinkMatch.All" class="@MobileLinkClass" ActiveClass="@MobileActiveClass">Home</NavLink>
+            </li>
+            <li>
+                <NavLink href="counter" class="@MobileLinkClass" ActiveClass="@MobileActiveClass">Counter</NavLink>
+            </li>
+            <li>
+                <NavLink href="fetchdata" class="@MobileLinkClass" ActiveClass="@MobileActiveClass">Fetch data</NavLink>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+@code {
+    private bool open;
+
+    private string LinkBaseClass => "tw-relative tw-inline-flex tw-items-center tw-gap-1 tw-text-foreground/80 hover:tw-text-foreground tw-transition tw-py-2";
+    private string ActiveClass => "tw-text-foreground tw-font-semibold after:tw-absolute after:tw-left-0 after:tw-right-0 after:tw--bottom-0.5 after:tw-h-0.5 after:tw-rounded-full after:tw-bg-primary after:tw-content-['']";
+    private string MobileLinkClass => "tw-block tw-w-full tw-rounded-md tw-px-3 tw-py-2 tw-text-foreground/80 hover:tw-bg-surface/60 hover:tw-text-foreground tw-transition";
+    private string MobileActiveClass => "tw-bg-surface/70 tw-text-foreground tw-font-semibold tw-ring-1 tw-ring-inset tw-ring-primary/40";
+
+    private void ToggleNavMenu() => open = !open;
+}

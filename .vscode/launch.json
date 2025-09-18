@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Server (API)",
+      "type": "coreclr",
+      "request": "launch",
+  "preLaunchTask": "prelaunch-full",
+      "program": "${workspaceFolder}/src/SaassyAdmin.Client/Server/bin/Debug/net6.0/SaassyAdmin.Client.Server.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/SaassyAdmin.Client/Server",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "stopAtEntry": false,
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "Now listening on: (https?://\\S+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      }
+    },
+    {
+      "name": "Blazor WASM (Chrome)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "https://localhost:7119",
+      "webRoot": "${workspaceFolder}/src/SaassyAdmin.Client/Client/wwwroot",
+      "inspectUri": "http://localhost:9222/",
+      "timeout": 60000
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack (Server + WASM)",
+      "configurations": ["Server (API)", "Blazor WASM (Chrome)"]
+    }
+  ]
+}

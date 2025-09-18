@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": ["build", "SaassyAdmin.sln"],
+      "problemMatcher": ["$msCompile"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "watch-server",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "src/SaassyAdmin.Client/Server/SaassyAdmin.Client.Server.csproj"
+      ],
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "owner": "csharp",
+            "pattern": [{
+              "regexp": ".*",
+              "file": 1,
+              "location": 2,
+              "message": 3
+            }],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*Building...",
+            "endsPattern": ".*Application started.*"
+          }
+        }
+      ]
+    },
+    {
+      "label": "tailwind-build",
+      "type": "shell",
+      "command": "npm run tailwind:build",
+      "problemMatcher": []
+    },
+    {
+      "label": "tailwind-watch",
+      "type": "shell",
+      "command": "npm run tailwind:watch",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": [ { "regexp": ".*" } ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": ".*Starting.*",
+            "endsPattern": ".*ready.*|.*changed.*"
+          }
+        }
+      ]
+    },
+    {
+      "label": "full-watch",
+      "dependsOn": ["tailwind-watch", "watch-server"],
+      "problemMatcher": []
+    },
+    {
+      "label": "prelaunch-full",
+      "dependsOn": ["tailwind-build", "build"],
+      "problemMatcher": []
+    }
+  ]
+}
