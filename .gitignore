@@ -52,3 +52,22 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# --- Node / Frontend tooling ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Optional lock files (uncomment to ignore if policy forbids committing)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Tailwind / PostCSS cache or misc
+.cache/
+
+# Generated Tailwind output (uncomment if you prefer not to commit build artifact)
+# src/SaassyAdmin.Client/Client/wwwroot/css/tailwind.css
